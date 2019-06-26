@@ -6,25 +6,21 @@
 /*   By: lgumede <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 09:31:49 by lgumede           #+#    #+#             */
-/*   Updated: 2019/06/26 11:28:38 by lgumede          ###   ########.fr       */
+/*   Updated: 2019/06/26 14:33:07 by lgumede          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-/*ft_new_line read a new line from the file descriptor fd
- * until \n, then gets the next line, or until \0, which
- * ends the program.*/
-
-int				next_line(char **str, char **new_line, const int fd, int bytes)
+int				next_line(char **str, char **new_line, int fd, int bytes)
 {
 	char	*temp;
-	size_t	size;
+	int		size;
 
 	size = 0;
-	while (str[fd][size] != '\n' && str[fd][size])
+	while (str[fd][size] != '\n' && str[fd][size] != '\0')
 		size++;
-	if (str[fd][size] =='\n')
+	if (str[fd][size] == '\n')
 	{
 		*new_line = ft_strsub(str[fd], 0, size);
 		temp = ft_strdup(str[fd] + size + 1);
@@ -35,7 +31,7 @@ int				next_line(char **str, char **new_line, const int fd, int bytes)
 	}
 	else if (str[fd][size] == '\0')
 	{
-		if (bytes == BUF_SIZE)
+		if (bytes == BUFF_SIZE)
 			return (get_next_line(fd, new_line));
 		*new_line = ft_strdup(str[fd]);
 		ft_strdel(&str[fd]);
@@ -43,20 +39,16 @@ int				next_line(char **str, char **new_line, const int fd, int bytes)
 	return (1);
 }
 
-/*get_next_line does exactly what it says :D, it gets the nwxt line
- * from the file Des fd, or returns 0 when no more bytes are
- * read by read ie: EOF*/
-
 int				get_next_line(const int fd, char **line)
 {
-	static char		*str[256];
-	char			buff[BUF_SIZE + 1];
+	static char		*str[255];
+	char			buff[BUFF_SIZE + 1];
 	char			*temp;
 	int				bytes;
 
 	if (fd < 0 || line == NULL)
 		return (-1);
-	while ((bytes = read(fd, buff, BUF_SIZE)) > 0)
+	while ((bytes = read(fd, buff, BUFF_SIZE)) > 0)
 	{
 		buff[bytes] = '\0';
 		if (str[fd] == NULL)
