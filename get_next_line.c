@@ -5,63 +5,69 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgumede <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/26 09:31:49 by lgumede           #+#    #+#             */
-/*   Updated: 2019/06/26 14:33:07 by lgumede          ###   ########.fr       */
+/*   Created: 2019/07/19 09:36:51 by lgumede           #+#    #+#             */
+/*   Updated: 2019/07/19 12:36:09 by lgumede          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int				next_line(char **str, char **new_line, int fd, int bytes)
+static int	ft_len(char *s, char c)
 {
-	char	*temp;
-	int		size;
+	int i;
 
-	size = 0;
-	while (str[fd][size] != '\n' && str[fd][size] != '\0')
-		size++;
-	if (str[fd][size] == '\n')
+	i = 0;
+	while (s[i])
 	{
-		*new_line = ft_strsub(str[fd], 0, size);
-		temp = ft_strdup(str[fd] + size + 1);
-		free(str[fd]);
-		str[fd] = temp;
-		if (str[fd][0] == '\0')
-			ft_strdel(&str[fd]);
+		if (s[i] == c)
+			return (i);
+		i++;
 	}
-	else if (str[fd][size] == '\0')
+	return (0);
+}
+
+static int	ft_readline(char **str, char **line)
+{
+	char *temp;
+
+	if (ft_strchr(*str, '\n'))
 	{
-		if (bytes == BUFF_SIZE)
-			return (get_next_line(fd, new_line));
-		*new_line = ft_strdup(str[fd]);
-		ft_strdel(&str[fd]);
+		*line = ft_strsub(*str, 0, ft_len(*str, '\n'));
+		temp = ft_strdup(ft_strchr(*str, '\n') + 1);
+		ft_strdel(str);
+		*str = temp;
+	}
+	else
+	{
+		*line = ft_strdup(*str);
+		ft_strdel(str);
 	}
 	return (1);
 }
 
-int				get_next_line(const int fd, char **line)
+int			get_next_line(const int fd, char **line)
 {
-	static char		*str[255];
-	char			buff[BUFF_SIZE + 1];
-	char			*temp;
-	int				bytes;
+	static char	*str[1024];
+	char		buff[BUFF_SIZE + 1];
+	int			bytes;
+	char		*temp;
 
-	if (fd < 0 || line == NULL)
+	if (fd < 0 || line == NULL || read(fd, buff, 0) < 0)
 		return (-1);
-	while ((bytes = read(fd, buff, BUFF_SIZE)) > 0)
+	if (str[fd] == NULL)
+		str[fd] = ft_strnew(1);
+	bytes = 0;
+	while (!ft_strchr(str[fd], '\n') && (bytes = read(fd, buff, BUFF_SIZE)) > 0)
 	{
 		buff[bytes] = '\0';
-		if (str[fd] == NULL)
-			str[fd] = ft_strnew(1);
 		temp = ft_strjoin(str[fd], buff);
-		free(str[fd]);
+		ft_strdel(&str[fd]);
 		str[fd] = temp;
-		if (ft_strchr(buff, '\n'))
-			break ;
 	}
 	if (bytes < 0)
 		return (-1);
 	else if (bytes == 0 && (str[fd] == NULL || str[fd][0] == '\0'))
 		return (0);
-	return (next_line(str, line, fd, bytes));
+	else
+		return (ft_readline(&str[fd], line));
 }
