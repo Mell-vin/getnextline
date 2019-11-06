@@ -5,24 +5,24 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgumede <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/22 10:45:55 by lgumede           #+#    #+#             */
-/*   Updated: 2019/06/22 10:48:32 by lgumede          ###   ########.fr       */
+/*   Created: 2019/07/19 09:43:00 by lgumede           #+#    #+#             */
+/*   Updated: 2019/07/19 09:43:09 by lgumede          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void			*ft_memset(void *str, int c, size_t size)
+void		*ft_memset(void *b, int c, size_t len)
 {
+	char	*str;
 	size_t	i;
-	char	*s;
 
-	s = (char *)str;
+	str = (char*)b;
 	i = 0;
-	while (i < size)
+	while (i < len)
 	{
-		s[i] = c;
+		str[i] = (unsigned char)c;
 		i++;
 	}
-	return (str);
+	return (b);
 }

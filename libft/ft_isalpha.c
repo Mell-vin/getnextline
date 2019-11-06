@@ -5,17 +5,19 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgumede <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/27 12:02:57 by lgumede           #+#    #+#             */
-/*   Updated: 2019/06/20 10:56:07 by lgumede          ###   ########.fr       */
+/*   Created: 2019/07/19 09:39:16 by lgumede           #+#    #+#             */
+/*   Updated: 2019/07/19 09:39:19 by lgumede          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-int			ft_isalpha(int c)
+int		ft_isalpha(int c)
 {
-	if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122))
+	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+	{
 		return (1);
+	}
 	else
+	{
 		return (0);
+	}
 }

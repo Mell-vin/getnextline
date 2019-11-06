@@ -5,18 +5,20 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgumede <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/11 14:29:02 by lgumede           #+#    #+#             */
-/*   Updated: 2019/06/21 14:23:32 by lgumede          ###   ########.fr       */
+/*   Created: 2019/07/19 09:43:37 by lgumede           #+#    #+#             */
+/*   Updated: 2019/07/19 09:43:38 by lgumede          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void			ft_putendl(char const *s)
+void	ft_putendl(char const *s)
 {
-	if (s == NULL)
-		return ;
-	ft_putstr(s);
-	ft_putchar('\n');
-	return ;
+	int	i;
+
+	i = 0;
+	if (s)
+		while (s[i])
+			write(1, &s[i++], 1);
+	write(1, "\n", 1);
 }

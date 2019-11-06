@@ -5,14 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgumede <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/27 13:50:37 by lgumede           #+#    #+#             */
-/*   Updated: 2019/06/18 09:16:07 by lgumede          ###   ########.fr       */
+/*   Created: 2019/07/19 09:41:09 by lgumede           #+#    #+#             */
+/*   Updated: 2019/07/19 09:41:11 by lgumede          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-int			ft_isprint(int c)
+int		ft_isprint(int c)
 {
 	if (c >= 32 && c <= 126)
 		return (1);

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgumede <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/11 10:00:05 by lgumede           #+#    #+#             */
-/*   Updated: 2019/06/25 14:35:40 by lgumede          ###   ########.fr       */
+/*   Created: 2019/07/19 09:49:24 by lgumede           #+#    #+#             */
+/*   Updated: 2019/07/19 09:49:26 by lgumede          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,13 @@
 
 char		*ft_strnew(size_t size)
 {
-	size_t	i;
-	char	*new;
+	char	*s;
+	size_t	len;
 
-	new = (char *)malloc(sizeof(char) * size + 1);
-	if (new == NULL)
-	{
+	len = size + 1;
+	s = (char *)malloc(sizeof(char) * len);
+	if (s == NULL)
 		return (NULL);
-	}
-	i = 0;
-	while (i <= size)
-	{
-		new[i] = '\0';
-		i++;
-	}
-	return (new);
+	ft_bzero(s, len);
+	return (s);
 }

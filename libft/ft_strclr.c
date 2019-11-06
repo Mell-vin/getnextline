@@ -5,17 +5,17 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgumede <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/01 13:45:08 by lgumede           #+#    #+#             */
-/*   Updated: 2019/06/21 14:25:01 by lgumede          ###   ########.fr       */
+/*   Created: 2019/07/19 09:45:31 by lgumede           #+#    #+#             */
+/*   Updated: 2019/07/19 09:45:35 by lgumede          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void			ft_strclr(char *s)
+void	ft_strclr(char *s)
 {
-	if (s == NULL)
-		return ;
-	ft_bzero(s, ft_strlen(s));
-	return ;
+	while (s != NULL && *s)
+	{
+		*s++ = '\0';
+	}
 }

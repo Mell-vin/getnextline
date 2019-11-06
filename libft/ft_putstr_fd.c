@@ -5,25 +5,19 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgumede <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/11 15:01:42 by lgumede           #+#    #+#             */
-/*   Updated: 2019/06/21 14:23:48 by lgumede          ###   ########.fr       */
+/*   Created: 2019/07/19 09:44:57 by lgumede           #+#    #+#             */
+/*   Updated: 2019/07/19 09:44:58 by lgumede          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void			ft_putstr_fd(char const *s, int fd)
+void	ft_putstr_fd(char const *s, int fd)
 {
-	size_t i;
+	int i;
 
+	i = 0;
 	if (s)
-	{
-		i = 0;
 		while (s[i])
-		{
-			ft_putchar_fd(s[i], fd);
-			i++;
-		}
-	}
-	return ;
+			write(fd, &s[i++], 1);
 }

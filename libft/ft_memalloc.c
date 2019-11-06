@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgumede <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/11 09:46:33 by lgumede           #+#    #+#             */
-/*   Updated: 2019/06/21 10:01:09 by lgumede          ###   ########.fr       */
+/*   Created: 2019/07/19 09:41:40 by lgumede           #+#    #+#             */
+/*   Updated: 2019/07/19 09:41:42 by lgumede          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,10 @@
 
 void		*ft_memalloc(size_t size)
 {
-	void	*mem;
+	char	*ptr;
 
-	mem = malloc(size);
-	if (mem == NULL)
-	{
+	if (!(ptr = (char *)malloc(size * sizeof(size_t))))
 		return (NULL);
-	}
-	ft_memset(mem, '\0', size);
-	return (mem);
+	ft_bzero(ptr, size);
+	return (ptr);
 }

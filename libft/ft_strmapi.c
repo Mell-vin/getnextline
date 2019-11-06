@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strmapi.c                                          :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgumede <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/03 13:39:18 by lgumede           #+#    #+#             */
-/*   Updated: 2019/06/20 12:51:03 by lgumede          ###   ########.fr       */
+/*   Created: 2019/07/19 09:48:22 by lgumede           #+#    #+#             */
+/*   Updated: 2019/07/19 09:48:24 by lgumede          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 char		*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	size_t	i;
+	int		i;
 	char	*str;
 
-	if (!(s) || !(f))
+	i = 0;
+	if (!s)
 		return (NULL);
-	str = ft_strnew(ft_strlen(s));
+	str = (char *)malloc(sizeof(*s) * ft_strlen(s) + 1);
 	if (!str)
 		return (NULL);
-	i = 0;
 	while (s[i])
 	{
 		str[i] = (*f)(i, s[i]);

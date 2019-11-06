@@ -5,27 +5,22 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgumede <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/24 14:28:01 by lgumede           #+#    #+#             */
-/*   Updated: 2019/06/25 14:47:31 by lgumede          ###   ########.fr       */
+/*   Created: 2019/07/19 09:45:20 by lgumede           #+#    #+#             */
+/*   Updated: 2019/07/19 09:45:21 by lgumede          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *str, int c)
+char		*ft_strchr(const char *s, int c)
 {
-	char	a;
-	int		i;
-
-	a = (char)c;
-	i = 0;
-	while (str[i] != a)
+	while (*s)
 	{
-		if (str[i] == '\0')
-		{
-			return (NULL);
-		}
-		i++;
+		if (*s == c)
+			return ((char*)s);
+		++s;
 	}
-	return ((char *)str + i);
+	if (c == '\0')
+		return ((char*)s);
+	return (NULL);
 }

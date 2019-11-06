@@ -5,15 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgumede <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/27 14:01:09 by lgumede           #+#    #+#             */
-/*   Updated: 2019/06/12 13:13:17 by lgumede          ###   ########.fr       */
+/*   Created: 2019/07/19 09:50:52 by lgumede           #+#    #+#             */
+/*   Updated: 2019/07/19 09:50:53 by lgumede          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include "libft.h"
-
-int			ft_tolower(int c)
+int		ft_tolower(int c)
 {
 	if (c >= 'A' && c <= 'Z')
 		return (c + 32);
